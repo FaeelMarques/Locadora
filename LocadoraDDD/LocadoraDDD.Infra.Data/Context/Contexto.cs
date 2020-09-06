@@ -36,7 +36,6 @@ namespace LocadoraDDD.Infra.Data.Context
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<Genero> Generos { get; set; }
         public DbSet<Locacao> Locacoes { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
