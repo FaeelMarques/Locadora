@@ -23,7 +23,7 @@ namespace LocadoraDDD.MVC.Controllers
         //ActionResult da homepage de filmes, trazendo a lista de filmes já cadastrados.
         public ActionResult Index()
         {
-            var filmes = Mapper.Map<IEnumerable<Filme>, IEnumerable<FilmeViewModel>>(_filmeService.GetAll().Where(f => f.Ativo));
+            var filmes = Mapper.Map<IEnumerable<Filme>, IEnumerable<FilmeViewModel>>(_filmeService.GetAll());
             return View(filmes);
         }
 

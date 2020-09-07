@@ -23,7 +23,7 @@ namespace LocadoraDDD.MVC.Controllers
         //ActionResult da homepage de gêneros, trazendo a lista de gêneros já cadastrados.
         public ActionResult Index()
         {
-            var generos = Mapper.Map<IEnumerable<Genero>, IEnumerable<GeneroViewModel>>(_generoService.GetAll().Where(g => g.Ativo));
+            var generos = Mapper.Map<IEnumerable<Genero>, IEnumerable<GeneroViewModel>>(_generoService.GetAll());
             return View(generos);
         }
 
