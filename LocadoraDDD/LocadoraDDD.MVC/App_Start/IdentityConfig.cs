@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using LocadoraDDD.MVC.Models;
+using LocadoraDDD.Infra.Data.Context;
 
 namespace LocadoraDDD.MVC
 {
@@ -42,7 +42,7 @@ namespace LocadoraDDD.MVC
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<Contexto>()));
             // Configurar a lógica de validação para nomes de usuário
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

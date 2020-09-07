@@ -1,0 +1,10 @@
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\bin\Debug\LocadoraDDD.Application.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\bin\Debug\LocadoraDDD.Application.pdb
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\bin\Debug\LocadoraDDD.Domain.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\bin\Debug\LocadoraDDD.Domain.pdb
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\bin\Debug\LocadoraDDD.Domain.dll.config
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\obj\Debug\LocadoraDDD.Application.csprojAssemblyReference.cache
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\obj\Debug\LocadoraDDD.Application.csproj.CoreCompileInputs.cache
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\obj\Debug\LocadoraDDD.Application.csproj.CopyComplete
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\obj\Debug\LocadoraDDD.Application.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Application\obj\Debug\LocadoraDDD.Application.pdb
