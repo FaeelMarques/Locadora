@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace LocadoraDDD.Infra.Data.Repositories
 {
+    //classe com métodos de CRUD genérica
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
-
     {
+
         protected Contexto db = new Contexto();
 
         public void Add(TEntity obj)
@@ -45,7 +46,7 @@ namespace LocadoraDDD.Infra.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            db.Dispose();
         }
     }
 }

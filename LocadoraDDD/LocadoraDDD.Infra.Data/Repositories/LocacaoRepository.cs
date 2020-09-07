@@ -11,12 +11,13 @@ using System.Threading.Tasks;
 
 namespace LocadoraDDD.Infra.Data.Repositories
 {
+    //Classe com método específico para locação
     public class LocacaoRepository : RepositoryBase<Locacao>, ILocacaoRepository
     {
         protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LocadoraDDD"].ConnectionString;
 
 
-        //Utilizando Dapper para busca de Locações com base no cpf informado
+        //Utilizando Dapper para busca de Locações com base no cpf informado.
         public IEnumerable<Locacao> BuscarPorCpfCliente(string cpf)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))

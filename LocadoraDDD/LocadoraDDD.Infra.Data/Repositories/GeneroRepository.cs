@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 
 namespace LocadoraDDD.Infra.Data.Repositories
 {
+    //Classe com método específico para gênero
     public class GeneroRepository : RepositoryBase<Genero>, IGeneroRepository
     {
         protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LocadoraDDD"].ConnectionString;
 
+        //Utilizando Dapper para busca de generos com base no nome informado.
         public IEnumerable<Genero> BuscarPorTitulo(string nome)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))

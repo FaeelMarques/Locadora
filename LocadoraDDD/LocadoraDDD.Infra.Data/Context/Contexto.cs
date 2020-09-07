@@ -44,6 +44,11 @@ namespace LocadoraDDD.Infra.Data.Context
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
         }
-           
+
+        public static Contexto Create()
+        {
+            return new Contexto();
+        }
+
     }
 }
