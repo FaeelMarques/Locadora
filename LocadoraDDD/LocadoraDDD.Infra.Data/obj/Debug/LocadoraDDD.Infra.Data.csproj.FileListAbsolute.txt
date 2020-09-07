@@ -20,3 +20,9 @@ D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.D
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\obj\Debug\LocadoraDDD.Infra.Data.pdb
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\obj\Debug\LocadoraDDD.Infra.Data.Migrations.202009060141191_Primeira_Migracao_Locadora.resources
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\obj\Debug\LocadoraDDD.Infra.Data.csproj.GenerateResource.cache
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\Dapper.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\Dommel.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\LocadoraDDD.Domain.dll.config
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\Dapper.xml
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\Dommel.xml

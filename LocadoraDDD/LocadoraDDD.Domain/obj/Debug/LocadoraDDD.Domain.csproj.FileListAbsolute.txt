@@ -4,3 +4,10 @@ D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\obj\Debug\LocadoraDDD.Domain.csproj.CoreCompileInputs.cache
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\obj\Debug\LocadoraDDD.Domain.dll
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\obj\Debug\LocadoraDDD.Domain.pdb
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\LocadoraDDD.Domain.dll.config
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\Dapper.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\Dommel.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\Dapper.xml
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\Dommel.xml
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\obj\Debug\LocadoraDDD.Domain.csproj.CopyComplete

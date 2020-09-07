@@ -190,7 +190,10 @@
     <Compile Include="AutoMapper\DomainTooViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FilmesController.cs" />
+    <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocacaoController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,7 +201,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FilmeViewModel.cs" />
     <Compile Include="Models\GeneroViewModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LocacaoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -263,6 +265,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Filmes\" />
+    <Folder Include="Views\Genero\" />
+    <Folder Include="Views\Locacao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -5,7 +5,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using LocadoraDDD.MVC.Models;
 using LocadoraDDD.Infra.Data.Context;
 
 namespace LocadoraDDD.MVC
