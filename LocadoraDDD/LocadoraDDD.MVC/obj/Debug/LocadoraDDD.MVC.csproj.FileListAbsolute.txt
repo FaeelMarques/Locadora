@@ -143,3 +143,5 @@ D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.MVC\bin
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.MVC\obj\Debug\LocadoraDDD.MVC.csproj.CopyComplete
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.MVC\obj\Debug\LocadoraDDD.MVC.dll
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.MVC\obj\Debug\LocadoraDDD.MVC.pdb
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.MVC\bin\Ninject.Web.Mvc.dll
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.MVC\bin\Ninject.Web.Mvc.xml

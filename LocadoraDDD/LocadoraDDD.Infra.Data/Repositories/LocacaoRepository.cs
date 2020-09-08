@@ -14,7 +14,7 @@ namespace LocadoraDDD.Infra.Data.Repositories
     //Classe com método específico para locação
     public class LocacaoRepository : RepositoryBase<Locacao>, ILocacaoRepository
     {
-        protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LocadoraDDD"].ConnectionString;
+        protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ProjetoModeloDDD"].ConnectionString;
 
 
         //Utilizando Dapper para busca de Locações com base no cpf informado.

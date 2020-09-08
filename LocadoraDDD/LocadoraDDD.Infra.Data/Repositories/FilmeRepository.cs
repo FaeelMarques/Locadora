@@ -14,7 +14,7 @@ namespace LocadoraDDD.Infra.Data.Repositories
     //Classe com método específico para filme
     public class FilmeRepository : RepositoryBase<Filme>, IFilmeRepository
     {
-        protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LocadoraDDD"].ConnectionString;
+        protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ProjetoModeloDDD"].ConnectionString;
 
         //Utilizando Dapper para busca de filmes com base no nome informado.
         public IEnumerable<Filme> BuscarPorTitulo(string nome)

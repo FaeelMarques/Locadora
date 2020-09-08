@@ -14,7 +14,7 @@ namespace LocadoraDDD.Infra.Data.Repositories
     //Classe com método específico para gênero
     public class GeneroRepository : RepositoryBase<Genero>, IGeneroRepository
     {
-        protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LocadoraDDD"].ConnectionString;
+        protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ProjetoModeloDDD"].ConnectionString;
 
         //Utilizando Dapper para busca de generos com base no nome informado.
         public IEnumerable<Genero> BuscarPorTitulo(string nome)
