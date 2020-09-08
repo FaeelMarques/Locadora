@@ -44,6 +44,7 @@ namespace LocadoraDDD.MVC.Controllers
             {
                 try
                 {
+                    viewModel.DataCriacao = DateTime.Now;
                     var genero = Mapper.Map<Genero>(viewModel);
                     _generoService.Add(genero);
                     return RedirectToAction("Index");

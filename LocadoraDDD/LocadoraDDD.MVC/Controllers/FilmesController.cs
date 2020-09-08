@@ -44,6 +44,7 @@ namespace LocadoraDDD.MVC.Controllers
             {
                 try
                 {
+                    viewModel.DataCriacao = DateTime.Now;
                     var filme = Mapper.Map<Filme>(viewModel);
                     _filmeService.Add(filme);
                     return RedirectToAction("Index");
@@ -92,6 +93,7 @@ namespace LocadoraDDD.MVC.Controllers
             }
             return View(viewModel);
         }
+
 
         //ActionResult para remover do banco o filme.
         [HttpPost]
