@@ -88,7 +88,7 @@
         $('.check_multiple').click(function () {
             $(this).toggleClass("acionado");
 
-            if ($(this).hasClass("acionado")) {
+            if ($("acionado").lengh > 0) {
                 $('#btn_remove_multiple').attr('disabled', false);
             } else {
                 $('#btn_remove_multiple').attr('disabled', true);
