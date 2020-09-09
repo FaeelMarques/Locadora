@@ -1,35 +1,45 @@
-﻿@model LocadoraDDD.MVC.Models.GeneroViewModel
+﻿@model LocadoraDDD.MVC.Models.LocacaoViewModel
 
 @{
     ViewBag.Title = "Deletar";
 }
 
 
-    <div class="container">
-        <h1>Detalhes de @Model.Nome</h1>
-        <p>Aqui você consegue visualizar os detalhes sobre o gênero @Model.Nome</p>
-        @using (Html.BeginForm("Excluir", "Genero", FormMethod.Post, new { @Class = "form-horizontal" }))
-        {
-            @Html.AntiForgeryToken()
-            <table class="table" style="margin-top: 20px;">
-                <tbody>
-                    <tr>
-                        <td width="15%">Titulo</td>
-                        <td>@Model.Nome</td>
-                    </tr>
-                    <tr>
-                        <td>Data de cadastro</td>
-                        <td>@Model.DataCriacao</td>
-                    </tr>
-                    <tr>
-                        <td>Ativo</td>
-                        <td>@(Model.Ativo ? "Sim" : "Não")</td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="container">
+    <h1>Locação @Model.Id</h1>
+    <p>Aqui você consegue visualizar os detalhes sobre a locação </p>
 
-            <p> Tem certeza que quer deletar esse Registro? </p>
-            <button type="submit" class="btn btn-warning">Excluir</button>
-            <a href="@Url.Action("Index", "Genero")" class="btn btn-primary">Voltar</a>
-        }
-    </div>
+    @using (Html.BeginForm("Excluir", "Locacao", FormMethod.Post, new { @Class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <table class="table" style="margin-top: 20px;">
+            <tbody>
+                <tr>
+                    <td width="15%">Id</td>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>Cpf do Cliente</td>
+                    <td>@Model.CpfCliente</td>
+                </tr>
+                <tr>
+                    <td>Data da Alocação</td>
+                    <td>@Model.DataLocacao</td>
+                </tr>
+                <tr>
+                    <td>Filmes Alocados</td>
+                    <td>
+                        @foreach (var filme in ViewBag.Filmes)
+                        {
+                            <p>@filme.Nome</p>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p> Tem certeza que quer deletar esse Registro? </p>
+        <button type="submit" class="btn btn-warning">Excluir</button>
+        <a href="@Url.Action("Index", "Locacao")" class="btn btn-primary">Voltar</a>
+    }
+</div>

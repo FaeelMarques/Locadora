@@ -23,5 +23,6 @@ namespace LocadoraDDD.Application
         {
             return _locacaoService.BuscarPorCpfCliente(cpf);
         }
+      
     }
 }

@@ -265,12 +265,24 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Filmes\Cadastrar.cshtml" />
+    <Content Include="Views\Filmes\Detalhes.cshtml" />
+    <Content Include="Views\Filmes\Editar.cshtml" />
+    <Content Include="Views\Filmes\Excluir.cshtml" />
+    <Content Include="Views\Filmes\Index.cshtml" />
+    <Content Include="Views\Genero\Cadastrar.cshtml" />
+    <Content Include="Views\Genero\Detalhes.cshtml" />
+    <Content Include="Views\Genero\Editar.cshtml" />
+    <Content Include="Views\Genero\Excluir.cshtml" />
+    <Content Include="Views\Genero\Index.cshtml" />
+    <Content Include="Views\Locacao\Cadastrar.cshtml" />
+    <Content Include="Views\Locacao\Detalhes.cshtml" />
+    <Content Include="Views\Locacao\Editar.cshtml" />
+    <Content Include="Views\Locacao\Excluir.cshtml" />
+    <Content Include="Views\Locacao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Filmes\" />
-    <Folder Include="Views\Genero\" />
-    <Folder Include="Views\Locacao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

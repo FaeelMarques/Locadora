@@ -15,22 +15,25 @@ namespace LocadoraDDD.MVC.Controllers
     {
         private readonly ILocacaoAppService _locacaoService;
         private readonly IFilmeAppService _filmeService;
+        private readonly ILocacaoFilmesAppService _locFilmesService;
 
         public LocacaoController()
         {
 
         }
 
-        public LocacaoController(ILocacaoAppService locacaoService, IFilmeAppService filmeService)
+        public LocacaoController(ILocacaoAppService locacaoService, IFilmeAppService filmeService, ILocacaoFilmesAppService locFilmesService)
         {
             _locacaoService = locacaoService;
             _filmeService = filmeService;
+            _locFilmesService = locFilmesService;
         }
 
         //ActionResult da homepage de locacao, trazendo a lista de locação já cadastrados.
-        public ActionResult Index()
+        public ActionResult Index(string cpf = "")
         {
-            var locacaos = Mapper.Map<IEnumerable<Locacao>, IEnumerable<LocacaoViewModel>>(_locacaoService.GetAll());
+            var locacaos = Mapper.Map<IEnumerable<Locacao>, IEnumerable<LocacaoViewModel>>(_locacaoService.BuscarPorCpfCliente(cpf));
+            ViewBag.Search = cpf;
             return View(locacaos);
         }
 
@@ -53,14 +56,17 @@ namespace LocadoraDDD.MVC.Controllers
                 try
                 {
                     var locacao = Mapper.Map<Locacao>(viewModel);
+                    locacao.DataLocacao = DateTime.Now;
+                    _locacaoService.Add(locacao);
 
                     foreach (var item in idFilmes)
                     {
-                        var filme = Mapper.Map<Filme>(_filmeService.GetById(item));
-                        //locacao..Add(filme);
+                        _locFilmesService.Add(new LocacaoFilmes
+                        {
+                            LocacaoId = locacao.Id,
+                            FilmeId = item
+                        });
                     }
-
-                    _locacaoService.Add(locacao);
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -75,6 +81,16 @@ namespace LocadoraDDD.MVC.Controllers
         public ActionResult Detalhes(int id)
         {
             var locacao = Mapper.Map<Locacao, LocacaoViewModel>(_locacaoService.GetById(id));
+
+            List<Filme> listaFilmes = new List<Filme>();
+
+            foreach (var item in locacao.LocacaoFilmes)
+            {
+                var filme = _filmeService.GetById(item.FilmeId);
+                listaFilmes.Add(filme);
+            }
+
+            ViewBag.Filmes = listaFilmes;
             if (locacao == null)
             {
                 return HttpNotFound();
@@ -83,39 +99,57 @@ namespace LocadoraDDD.MVC.Controllers
         }
 
         //ActionResult que redireciona para edição da locação.
-        public ActionResult Editar(int id)
-        {
-            var locacao = Mapper.Map<Locacao, LocacaoViewModel>(_locacaoService.GetById(id));
-            if (locacao == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Filmes = _filmeService.GetAll();
-            return View(locacao);
-        }
+        //public ActionResult Editar(int id)
+        //{
+        //    var locacao = Mapper.Map<Locacao, LocacaoViewModel>(_locacaoService.GetById(id));
+        //    if (locacao == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.Filmes = _filmeService.GetAll();
+        //    return View(locacao);
+        //}
 
 
-        //ActionResult para atualizar no banco a locação.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Editar(LocacaoViewModel viewModel)
-        {
+        ////ActionResult para atualizar no banco a locação.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Editar(LocacaoViewModel viewModel, List<int> idFilmes)
+        //{
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var locacao = Mapper.Map<Locacao>(viewModel);
-                    _locacaoService.Update(locacao);
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-            }
-            return View(viewModel);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var locacao = Mapper.Map<Locacao>(viewModel);
+
+        //            if (idFilmes != null)
+        //            {
+        //                foreach (var item in idFilmes)
+        //                {
+        //                    //var locacaoFilme = _locFilmesService.GetById(item);
+        //                    //_locFilmesService.
+
+
+        //                    _locFilmesService.Add(new LocacaoFilmes
+        //                    {
+        //                        LocacaoId = locacao.Id,
+        //                        FilmeId = item
+        //                    });
+        //                }
+        //            }
+
+        //            _locacaoService.Update(locacao);
+        //            return RedirectToAction("Index");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    ViewBag.Filmes = _filmeService.GetAll();
+        //    return View(viewModel);
+        //}
 
         ////ActionResult para remover do banco a locação.
         //[HttpPost]

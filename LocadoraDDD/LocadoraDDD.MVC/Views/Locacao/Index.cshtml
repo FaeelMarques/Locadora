@@ -3,17 +3,39 @@
     ViewBag.Title = "Index";
 }
 <div class="container">
-    <h1>Lista de Gêneros</h1>
-    <p>Aqui você consegue visualizar os gêneros dos filmes!</p>
-    <p>
-        <a href="@Url.Action("Cadastrar","Locacao")"><button class="btn btn-success"> Cadastrar Locação</button></a>
-    </p>
+    <h1>Lista de Locações</h1>
+    <p>Aqui você consegue visualizar As Locações Realizadas!</p>
+    <div class="bloco" style="margin-top: 20px; margin-bottom: 70px;">
+        <table class="fc-header" style="width: 100%;">
+            <tbody>
+                <tr style="height: 48px;">
+                    <td class="fc-header-center" style="width:80%">
+                        @using (Html.BeginForm("Index", "Locacao", FormMethod.Get))
+                        {
+                            <div class="row" style="padding-bottom: 20px;">
+                                <div class="col-md-4">
+                                    <input class="form-control" id="page" name="page" type="hidden" value="">
+                                    <input class="form-control cpf" id="search" name="cpf" placeholder="Buscar por CPF" type="text" value="@ViewBag.Search">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <input type="submit" value="Buscar" class="btn bg-blue margin" style="margin: 0px; width: 100%;">
+                                </div>
+                            </div>}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a href="@Url.Action("Cadastrar","Locacao")"><button class="btn btn-success"> Cadastrar Locação</button></a>
+        </p>
+    </div>
     <table class="table">
         <tr>
-            <th width="350">
+            <th>
                 Id
             </th>
-           
+
             <th>
                 CPF do cliente
             </th>
@@ -36,10 +58,7 @@
                     @item.DataLocacao
                 </td>
                 <td>
-                    <a href="@Url.Action("Editar","Genero", new { id = item.Id})"><button class="btn btn-warning">Editar</button></a> |
-                    <a href="@Url.Action("Detalhes","Genero", new { id = item.Id})"><button class="btn btn-primary">Detalhes</button></a> |
-                    <a href="@Url.Action("Excluir","Genero", new { id = item.Id})"><button class="btn btn-danger">Excluir</button></a>
-                    <input type="checkbox" value="@item.Id" name="idFilmes"  />
+                    <a href="@Url.Action("Detalhes","Locacao", new { id = item.Id})"><button class="btn btn-primary">Detalhes</button></a>
                 </td>
             </tr>
         }
@@ -47,3 +66,9 @@
     </table>
 
 </div>
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.js"></script>
+    <script>
+        $('.cpf').mask("000.000.000-00");
+    </script>
+}

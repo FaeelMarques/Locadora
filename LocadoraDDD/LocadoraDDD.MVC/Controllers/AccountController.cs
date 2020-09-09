@@ -58,6 +58,10 @@ namespace LocadoraDDD.MVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Filmes");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

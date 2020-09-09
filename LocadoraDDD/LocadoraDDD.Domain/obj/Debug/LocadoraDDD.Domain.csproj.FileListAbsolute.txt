@@ -10,3 +10,4 @@ D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\Dapper.xml
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\bin\Debug\Dommel.xml
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\obj\Debug\LocadoraDDD.Domain.csproj.CopyComplete
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Domain\obj\Debug\LocadoraDDD.Domain.csprojAssemblyReference.cache

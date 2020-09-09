@@ -137,8 +137,7 @@ namespace LocadoraDDD.MVC.Controllers
         }
 
         //ActionResult para remover múltiplos gêneros do banco.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult ExcluirMultiplos(int[] idGeneros)
         {
             try
