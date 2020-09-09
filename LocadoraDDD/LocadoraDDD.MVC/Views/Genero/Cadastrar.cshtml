@@ -1,0 +1,35 @@
+﻿
+@model LocadoraDDD.MVC.Models.GeneroViewModel
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+    <div class="container">
+        <h2 style="padding-bottom: 20px;">Gêneros</h2>
+
+        @using (Html.BeginForm("Cadastrar", "Genero", FormMethod.Post, new { @Class = "form-horizontal" }))
+        {
+            <h4 style="padding-bottom: 10px;">Cadastrar novo gênero</h4>
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nome, new { @Class = "control-label col-md-1" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(m => m.Nome, new { @Class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Nome)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ativo, new { @Class = "control-label col-md-1" })
+                <div class="col-md-5">
+                    @Html.CheckBoxFor(m => m.Ativo)
+                    @Html.ValidationMessageFor(m => m.Ativo)
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" value="Cadastrar">Cadastrar Gênero</button>
+            <a href="@Url.Action("Index","Genero")" class="btn btn-default"> Voltar</a>
+        }
+    </div>

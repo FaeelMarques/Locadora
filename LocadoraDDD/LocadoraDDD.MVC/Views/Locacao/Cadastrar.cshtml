@@ -1,0 +1,44 @@
+﻿
+@model LocadoraDDD.MVC.Models.LocacaoViewModel
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<div class="container">
+    <h2 style="padding-bottom: 20px;">Locações</h2>
+
+    @using (Html.BeginForm("Cadastrar", "Locacao", FormMethod.Post, new { @Class = "form-horizontal" }))
+    {
+        <h4 style="padding-bottom: 10px;">Cadastrar novo gênero</h4>
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.CpfCliente, new { @Class = "control-label col-md-1" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.CpfCliente, new { @Class = "form-control cpf", placeholder = "000.000.000-00" })
+                @Html.ValidationMessageFor(m => m.CpfCliente)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Filmes", new { @Class = "control-label col-md-1" })
+            @foreach (var filme in ViewBag.Filmes)
+            {
+                <div class="col-md-5">
+                    <input type="checkbox" name="idFilmes" value="@filme.Id" />
+                    <span>@filme.Nome</span>
+                </div>
+            }
+        </div>
+        <button type="submit" class="btn btn-success" value="Cadastrar">Cadastrar Locação</button>
+        <a href="@Url.Action("Index","Locacao")" class="btn btn-default"> Voltar</a>
+    }
+</div>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.js"></script>
+    <script>
+        $('.cpf').mask("000.000.000-00");
+    </script>
+}

@@ -1,0 +1,50 @@
+﻿@model LocadoraDDD.MVC.Models.LocacaoViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+    <div class="container">
+        <h2>Locação Número @Model.Id</h2>
+
+        @using (Html.BeginForm("Editar", "Locacao", FormMethod.Post, new { @Class = "form-horizontal" }))
+        {
+            <h4>Editar</h4>
+
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.DataLocacao)
+            <div class="form-group">
+                @Html.LabelFor(m => m.CpfCliente, new { @Class = "control-label col-md-1" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(m => m.CpfCliente, new { @Class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CpfCliente)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Filmes", new { @Class = "control-label col-md-1" })
+
+                @foreach (var filme in ViewBag.Filmes)
+                {
+                    if (Model.LocacaoFilmes.Any(l => l.FilmeId == filme.Id))
+                    {
+                        <div class="col-md-5">
+                            <input type="checkbox" name="idFilmes" value="@filme.Id" checked="checked" />
+                            <span>@filme.Nome</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-5">
+                            <input type="checkbox" name="idFilmes" value="@filme.Id" />
+                            <span>@filme.Nome</span>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="btn-group col-md-offset-1">
+                <input type="submit" class="btn btn-success" value="Editar" style="margin-right: 10px;" />
+                <a href="@Url.Action("Index")" class="btn btn-info">Voltar</a>
+            </div>
+        }
+    </div>

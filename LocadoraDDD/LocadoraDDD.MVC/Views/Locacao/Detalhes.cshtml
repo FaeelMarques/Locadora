@@ -1,0 +1,39 @@
+﻿
+@model LocadoraDDD.MVC.Models.LocacaoViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+
+<div class="container">
+    <h1>Detalhes da Locação</h1>
+    <p>Aqui você consegue visualizar os detalhes sobre a locação </p>
+
+    <table class="table" style="margin-top: 20px;">
+        <tbody>
+            <tr>
+                <td width="15%">Id</td>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <td>Cpf do Cliente</td>
+                <td>@Model.CpfCliente</td>
+            </tr>
+            <tr>
+                <td>Data da Alocação</td>
+                <td>@Model.DataLocacao</td>
+            </tr>
+            <tr>
+                <td>Filmes Alocados</td>
+                <td>
+                    @foreach (var filme in ViewBag.Filmes)
+                    {
+                        <p>@filme.Nome</p>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="@Url.Action("Index","Locacao")" class="btn btn-primary">Voltar</a>
+</div>
