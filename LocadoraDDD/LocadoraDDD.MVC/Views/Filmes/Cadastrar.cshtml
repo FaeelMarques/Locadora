@@ -1,0 +1,43 @@
+﻿@model LocadoraDDD.MVC.Models.FilmeViewModel
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+    <div class="container">
+        <h2 style="padding-bottom: 20px;">Films</h2>
+
+        @using (Html.BeginForm("Cadastrar", "Filmes", FormMethod.Post, new { @Class = "form-horizontal" }))
+        {
+            <h4 style="padding-bottom: 10px;">Cadastrar novo filme</h4>
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nome, new { @Class = "control-label col-md-1" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(m => m.Nome, new { @Class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Nome)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Genero, new { @Class = "control-label col-md-1" })
+                <div class="col-md-5">
+
+                    @Html.DropDownListFor(model => model.GeneroId, new SelectList(ViewBag.Generos, "Value", "Text"), new { @Class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GeneroId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ativo, new { @Class = "control-label col-md-1" })
+                <div class="col-md-5">
+                    @Html.CheckBoxFor(m => m.Ativo)
+                    @Html.ValidationMessageFor(m => m.Ativo)
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" value="Cadastrar">Cadastrar Gênero</button>
+            <a href="@Url.Action("Index","Genero")" class="btn btn-default"> Voltar</a>
+        }
+    </div>

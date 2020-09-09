@@ -1,0 +1,130 @@
+﻿@model IEnumerable<LocadoraDDD.MVC.Models.FilmeViewModel>
+
+
+<div class="container">
+    <h1>Lista de Filmes</h1>
+    <p>Aqui você consegue visualizar nossa lista de filmes disponíveis!</p>
+    <div class="bloco" style="margin-top: 20px; margin-bottom: 70px;">
+        <table class="fc-header" style="width: 100%;">
+            <tbody>
+                <tr style="height: 48px;">
+                    <td class="fc-header-center" style="width:80%">
+                        @using (Html.BeginForm("Index", "Filmes", FormMethod.Get))
+                        {
+                            <div class="row" style="padding-bottom: 20px;">
+                                <div class="col-md-4">
+                                    <input class="form-control" id="page" name="page" type="hidden" value="">
+                                    <input class="form-control" id="search" name="nome" placeholder="Busca" type="text" value="@ViewBag.Search">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <input type="submit" value="Buscar" class="btn bg-blue margin" style="margin: 0px; width: 100%;">
+                                </div>
+                            </div>}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a href="@Url.Action("Cadastrar","Filmes")"><button class="btn btn-success"> Cadastrar Filme</button></a>
+        </p>
+    </div>
+    <div class="bloco">
+
+        <p style="text-align: right;">
+            <button class="btn btn-primary" id="btn_multiple">Selecionar Vários</button>
+            <button class="btn btn-primary" id="btn_remove_multiple" disabled="disabled">Remover Selecionados</button>
+
+        </p>
+    </div>
+    <table class="table">
+        <tr>
+            <th width="150">
+                Nome
+            </th>
+            <th>
+                Data de Criação
+            </th>
+            <th>
+                Gênero
+            </th>
+            <th>
+                Ativo
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Nome
+                </td>
+                <td>
+                    @item.DataCriacao
+                </td>
+                <td>
+                    @item.Genero.Nome
+                </td>
+                <td>
+                    @(item.Ativo? "sim": "não")
+                </td>
+                <td style="text-align: center;">
+                    <a href="@Url.Action("Editar","Filmes", new { id = item.Id})"><button class="btn btn-warning">Editar</button></a> |
+                    <a href="@Url.Action("Detalhes","Filmes", new { id = item.Id})"><button class="btn btn-primary">Detalhes</button></a> |
+                    <a href="@Url.Action("Excluir","Filmes", new { id = item.Id})"><button class="btn btn-danger">Excluir</button></a>
+                    <input type="checkbox" class="check_multiple" value="@item.Id" name="idFilmes" style="display: none; margin-left:10px;" />
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+@section Scripts{
+    <script>
+        var listaIds = new Array();
+        $("#btn_multiple").click(function () {
+            $('.check_multiple').toggle();
+        });
+
+        $('.check_multiple').click(function () {
+            $(this).toggleClass("acionado");
+
+            if ($(this).hasClass("acionado")) {
+                $('#btn_remove_multiple').attr('disabled', false);
+            } else {
+                $('#btn_remove_multiple').attr('disabled', true);
+            }
+        });
+
+        $('#btn_remove_multiple').click(function () {
+            $('.check_multiple').each(function () {
+
+                if ($(this).hasClass('acionado')) {
+                    listaIds.push($(this).val());
+                }
+            })
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ExcluirMultiplos","Filmes")",
+                data: { idFilmes: listaIds },
+                success: function (data) {
+                    if (data.ok) {
+                        listaIds.splice(0, listaIds.length);
+                        var confirmacao = confirm("Sucesso!");
+                        if (confirmacao == true) {
+                            window.location.reload();
+                        }
+
+                    } else {
+                        listaIds.splice(0, listaIds.length);
+                        confirm("Houve algum erro ao tentar remover o(s) registro(s)!");
+                    }
+                }
+            })
+        })
+
+
+    </script>
+}
