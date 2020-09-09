@@ -23,7 +23,7 @@ namespace LocadoraDDD.MVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +35,9 @@ namespace LocadoraDDD.MVC.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -78,22 +78,22 @@ namespace LocadoraDDD.MVC.Controllers
                 return View(model);
             }
 
-            // Isso não conta falhas de login em relação ao bloqueio de conta
-            // Para permitir que falhas de senha acionem o bloqueio da conta, altere para shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var usuario = await UserManager.FindByEmailAsync(model.Email);
+            if (usuario != null)
             {
-                case SignInStatus.Success:
-                    return RedirectToAction("Index", "Filmes");
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Tentativa de login inválida.");
-                    return View(model);
+                try
+                {
+                    await SignInManager.SignInAsync(usuario, isPersistent: false, rememberBrowser: false);
+                    return RedirectToAction("Index", "Filmes", new { nome = "" });
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                
             }
+            ModelState.AddModelError("", "Tentativa de login inválida.");
+            return View(model);
         }
 
         //
@@ -125,7 +125,7 @@ namespace LocadoraDDD.MVC.Controllers
             // Se um usuário inserir códigos incorretos para uma quantidade especificada de tempo, então a conta de usuário 
             // será bloqueado por um período especificado de tempo. 
             // Você pode configurar os ajustes de bloqueio da conta em IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -160,8 +160,8 @@ namespace LocadoraDDD.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar um email com este link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
