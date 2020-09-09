@@ -1,0 +1,31 @@
+﻿
+@model LocadoraDDD.MVC.Models.GeneroViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+
+    <div class="container">
+        <h1>Detalhes de @Model.Nome</h1>
+        <p>Aqui você consegue visualizar os detalhes sobre o gênero @Model.Nome</p>
+
+        <table class="table" style="margin-top: 20px;">
+            <tbody>
+                <tr>
+                    <td width="15%">Titulo</td>
+                    <td>@Model.Nome</td>
+                </tr>
+                <tr>
+                    <td>Data de cadastro</td>
+                    <td>@Model.DataCriacao</td>
+                </tr>
+                <tr>
+                    <td>Ativo</td>
+                    <td>@(Model.Ativo? "Sim": "Não")</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="@Url.Action("Editar","Genero", new {id = Model.Id })" class="btn btn-warning">Editar gênero</a>
+        <a href="@Url.Action("Index","Genero")" class="btn btn-primary">Voltar</a>
+    </div>

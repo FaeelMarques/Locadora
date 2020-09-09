@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LocadoraDDD.MVC.Models.LocacaoViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <h1>Lista de Gêneros</h1>
+    <p>Aqui você consegue visualizar os gêneros dos filmes!</p>
+    <p>
+        <a href="@Url.Action("Cadastrar","Locacao")"><button class="btn btn-success"> Cadastrar Locação</button></a>
+    </p>
+    <table class="table">
+        <tr>
+            <th width="350">
+                Id
+            </th>
+           
+            <th>
+                CPF do cliente
+            </th>
+            <th>
+                Data de Locação
+            </th>
+            <th width="300">Ações</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.CpfCliente
+                </td>
+                <td>
+                    @item.DataLocacao
+                </td>
+                <td>
+                    <a href="@Url.Action("Editar","Genero", new { id = item.Id})"><button class="btn btn-warning">Editar</button></a> |
+                    <a href="@Url.Action("Detalhes","Genero", new { id = item.Id})"><button class="btn btn-primary">Detalhes</button></a> |
+                    <a href="@Url.Action("Excluir","Genero", new { id = item.Id})"><button class="btn btn-danger">Excluir</button></a>
+                    <input type="checkbox" value="@item.Id" name="idFilmes"  />
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
