@@ -9,5 +9,6 @@ namespace LocadoraDDD.Domain.Interfaces.Services
 {
     public interface IGeneroService : IServiceBase<Genero>
     {
+        IEnumerable<Genero> BuscarPorTitulo(string nome);
     }
 }

@@ -13,17 +13,24 @@ namespace LocadoraDDD.MVC.Controllers
     //[Authorize]
     public class FilmesController : Controller
     {
+        private readonly IGeneroAppService _generoService;
         private readonly IFilmeAppService _filmeService;
+        public FilmesController()
+        {
+        }
 
-        public FilmesController(IFilmeAppService filmeService)
+
+        public FilmesController(IFilmeAppService filmeService, IGeneroAppService generoService)
         {
             _filmeService = filmeService;
+            _generoService = generoService;
         }
 
         //ActionResult da homepage de filmes, trazendo a lista de filmes já cadastrados.
-        public ActionResult Index()
+        public ActionResult Index(string nome = "")
         {
-            var filmes = Mapper.Map<IEnumerable<Filme>, IEnumerable<FilmeViewModel>>(_filmeService.GetAll());
+            var filmes = Mapper.Map<IEnumerable<FilmeViewModel>>(_filmeService.BuscarPorTitulo(nome));
+            ViewBag.Search = nome;
             return View(filmes);
         }
 
@@ -31,6 +38,27 @@ namespace LocadoraDDD.MVC.Controllers
         //ActionResult para redirecionar para cadastro do filme.
         public ActionResult Cadastrar()
         {
+            List<SelectListItem> listaGeneros = new List<SelectListItem>();
+
+            listaGeneros.Add(new SelectListItem
+            {
+                Text = "Selecione...",
+                Value = "0",
+                Selected = true
+            });
+
+            var generos = Mapper.Map<IEnumerable<Genero>>(_generoService.GetAll());
+
+            foreach (var genero in generos)
+            {
+                listaGeneros.Add(new SelectListItem
+                {
+                    Text = genero.Nome,
+                    Value = genero.Id.ToString()
+                });
+            }
+
+            ViewBag.Generos = listaGeneros;
             return View();
         }
 
@@ -61,13 +89,46 @@ namespace LocadoraDDD.MVC.Controllers
         public ActionResult Detalhes(int id)
         {
             var filme = Mapper.Map<Filme, FilmeViewModel>(_filmeService.GetById(id));
+            if (filme == null)
+            {
+                return HttpNotFound();
+            }
             return View(filme);
         }
 
         //ActionResult que redireciona para edição do filme.
         public ActionResult Editar(int id)
         {
+
+            List<SelectListItem> listaGeneros = new List<SelectListItem>();
+
+            listaGeneros.Add(new SelectListItem
+            {
+                Text = "Selecione...",
+                Value = "0",
+                Selected = true
+            });
+
+            var generos = Mapper.Map<IEnumerable<Genero>>(_generoService.GetAll());
+
+            foreach (var genero in generos)
+            {
+                listaGeneros.Add(new SelectListItem
+                {
+                    Text = genero.Nome,
+                    Value = genero.Id.ToString()
+                });
+            }
+
+
             var filme = Mapper.Map<Filme, FilmeViewModel>(_filmeService.GetById(id));
+            if (filme == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            ViewBag.Generos = listaGeneros;
             return View(filme);
         }
 
@@ -94,28 +155,38 @@ namespace LocadoraDDD.MVC.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Excluir(int id)
+        {
+            var filme = Mapper.Map<FilmeViewModel>(_filmeService.GetById(id));
+            if (filme == null)
+            {
+                return HttpNotFound();
+            }
+            return View(filme);
+        }
+
 
         //ActionResult para remover do banco o filme.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Excluir(int id)
+        public ActionResult Excluir(FilmeViewModel viewModel)
         {
             try
             {
-                var filme = Mapper.Map<Filme>(_filmeService.GetById(id));
+                var filme = Mapper.Map<Filme>(viewModel);
                 _filmeService.Remove(filme);
-                return Json(new { ok = true });
+                return RedirectToAction("Index");
             }
             catch (Exception e)
             {
-                return Json(new { ok = false });
+                throw;
             }
         }
 
         //ActionResult para remover múltiplos filmes do banco.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ExcluirMultiplos(List<int> idFilmes)
+        public ActionResult ExcluirMultiplos(int[] idFilmes)
         {
             try
             {

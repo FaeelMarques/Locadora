@@ -18,6 +18,10 @@ namespace LocadoraDDD.Application
         {
             _filmeService = filmeService;
         }
+        public IEnumerable<Filme> BuscarPorTitulo(string name)
+        {
+            return _filmeService.BuscarPorTitulo(name);
+        }
 
     }
 }

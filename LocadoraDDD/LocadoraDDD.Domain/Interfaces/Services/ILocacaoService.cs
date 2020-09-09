@@ -9,5 +9,6 @@ namespace LocadoraDDD.Domain.Interfaces.Services
 {
    public interface ILocacaoService : IServiceBase<Locacao>
     {
+        IEnumerable<Locacao> BuscarPorCpfCliente(string cpf);
     }
 }

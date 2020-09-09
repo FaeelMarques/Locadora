@@ -16,15 +16,24 @@ namespace LocadoraDDD.Infra.Data.Repositories
     {
         protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ProjetoModeloDDD"].ConnectionString;
 
-
-        //Utilizando Dapper para busca de Locações com base no cpf informado.
+        //Utilizando Dapper para busca de Locações com base no cpf informado. 
         public IEnumerable<Locacao> BuscarPorCpfCliente(string cpf)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                return con.Query<Locacao>(
-                    "SELECT * FROM dbo.Locacao WHERE CpfCliente = @cpf");
+                var Query = "";
+
+                if (!string.IsNullOrEmpty(cpf))
+                {
+                    Query = "SELECT * FROM dbo.Locacao l WHERE l.CpfCliente = '" + cpf + "'";
+                }
+                else
+                {
+                    Query = "SELECT * FROM dbo.Locacao";
+                }
+
+
+                return con.Query<Locacao>(Query);
             }
         }
-    }
-}
+    } 

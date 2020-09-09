@@ -16,6 +16,6 @@ namespace LocadoraDDD.MVC.Models
 
         public bool Ativo { get; set; }
 
-        public virtual Genero Genero { get; set; }
+        public virtual GeneroViewModel Genero { get; set; }
     }
 }

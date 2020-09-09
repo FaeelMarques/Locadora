@@ -16,12 +16,23 @@ namespace LocadoraDDD.Infra.Data.Repositories
     {
         protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ProjetoModeloDDD"].ConnectionString;
 
-        //Utilizando Dapper para busca de generos com base no nome informado.
+        //Utilizando Dapper para busca de generos com base no nome informado. 
         public IEnumerable<Genero> BuscarPorTitulo(string nome)
         {
+
+            var Query = "";
+
+            if (!string.IsNullOrEmpty(nome))
+            {
+                Query = "SELECT * From dbo.Genero g Where g.Nome like '%" + nome + "%'";
+            }
+            else
+            {
+                Query = "Select * From dbo.Genero";
+            }
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                return con.Query<Genero>("SELECT * FROM dbo.Genero WHERE Nome like '%@nome%'");
+                return con.Query<Genero>(Query);
             }
         }
     }

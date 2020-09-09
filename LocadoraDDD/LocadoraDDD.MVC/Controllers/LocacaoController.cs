@@ -14,10 +14,17 @@ namespace LocadoraDDD.MVC.Controllers
     public class LocacaoController : Controller
     {
         private readonly ILocacaoAppService _locacaoService;
+        private readonly IFilmeAppService _filmeService;
 
-        public LocacaoController(ILocacaoAppService locacaoService)
+        public LocacaoController()
+        {
+
+        }
+
+        public LocacaoController(ILocacaoAppService locacaoService, IFilmeAppService filmeService)
         {
             _locacaoService = locacaoService;
+            _filmeService = filmeService;
         }
 
         //ActionResult da homepage de locacao, trazendo a lista de locação já cadastrados.
@@ -31,6 +38,7 @@ namespace LocadoraDDD.MVC.Controllers
         //ActionResult para redirecionar para cadastro da locação.
         public ActionResult Cadastrar()
         {
+            ViewBag.Filmes = _filmeService.GetAll();
             return View();
         }
 
@@ -38,14 +46,20 @@ namespace LocadoraDDD.MVC.Controllers
         //ActionResult para salvar no banco a locação.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastrar(LocacaoViewModel viewModel)
+        public ActionResult Cadastrar(LocacaoViewModel viewModel, List<int> idFilmes)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    viewModel.DataLocacao = DateTime.Now;
                     var locacao = Mapper.Map<Locacao>(viewModel);
+
+                    foreach (var item in idFilmes)
+                    {
+                        var filme = Mapper.Map<Filme>(_filmeService.GetById(item));
+                        locacao.ListaFilmes.Add(filme);
+                    }
+
                     _locacaoService.Add(locacao);
                     return RedirectToAction("Index");
                 }
@@ -61,6 +75,10 @@ namespace LocadoraDDD.MVC.Controllers
         public ActionResult Detalhes(int id)
         {
             var locacao = Mapper.Map<Locacao, LocacaoViewModel>(_locacaoService.GetById(id));
+            if (locacao == null)
+            {
+                return HttpNotFound();
+            }
             return View(locacao);
         }
 
@@ -68,6 +86,11 @@ namespace LocadoraDDD.MVC.Controllers
         public ActionResult Editar(int id)
         {
             var locacao = Mapper.Map<Locacao, LocacaoViewModel>(_locacaoService.GetById(id));
+            if (locacao == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Filmes = _filmeService.GetAll();
             return View(locacao);
         }
 

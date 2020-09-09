@@ -19,5 +19,9 @@ namespace LocadoraDDD.Application
             _locacaoService = locacaoService;
         }
 
+        public IEnumerable<Locacao> BuscarPorCpfCliente(string cpf)
+        {
+            return _locacaoService.BuscarPorCpfCliente(cpf);
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace LocadoraDDD.Domain.Interfaces.Services
 {
     public interface IFilmeService : IServiceBase<Filme>
     {
+        IEnumerable<Filme> BuscarPorTitulo(string nome);
     }
 }

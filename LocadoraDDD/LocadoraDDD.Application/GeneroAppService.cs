@@ -19,5 +19,9 @@ namespace LocadoraDDD.Application
             _generoService = generoService;
         }
 
+        public IEnumerable<Genero> BuscarPorTitulo(string name)
+        {
+            return _generoService.BuscarPorTitulo(name);
+        }
     }
 }

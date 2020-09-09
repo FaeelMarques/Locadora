@@ -15,15 +15,20 @@ namespace LocadoraDDD.MVC.Controllers
     {
         private readonly IGeneroAppService _generoService;
 
+        public GeneroController()
+        {
+
+        }
         public GeneroController(IGeneroAppService generoService)
         {
             _generoService = generoService;
         }
 
         //ActionResult da homepage de gêneros, trazendo a lista de gêneros já cadastrados.
-        public ActionResult Index()
+        public ActionResult Index(string name = "")
         {
-            var generos = Mapper.Map<IEnumerable<Genero>, IEnumerable<GeneroViewModel>>(_generoService.GetAll());
+            var generos = Mapper.Map<IEnumerable<Genero>, IEnumerable<GeneroViewModel>>(_generoService.BuscarPorTitulo(name));
+            ViewBag.Search = name;
             return View(generos);
         }
 
@@ -61,6 +66,10 @@ namespace LocadoraDDD.MVC.Controllers
         public ActionResult Detalhes(int id)
         {
             var genero = Mapper.Map<Genero, GeneroViewModel>(_generoService.GetById(id));
+            if (genero == null)
+            {
+                return HttpNotFound();
+            }
             return View(genero);
         }
 
@@ -68,6 +77,10 @@ namespace LocadoraDDD.MVC.Controllers
         public ActionResult Editar(int id)
         {
             var genero = Mapper.Map<Genero, GeneroViewModel>(_generoService.GetById(id));
+            if (genero == null)
+            {
+                return HttpNotFound();
+            }
             return View(genero);
         }
 
@@ -94,27 +107,39 @@ namespace LocadoraDDD.MVC.Controllers
             return View(viewModel);
         }
 
+
+        [HttpGet]
+        public ActionResult Excluir(int id)
+        {
+            var genero = Mapper.Map<GeneroViewModel>(_generoService.GetById(id));
+            if (genero == null)
+            {
+                return HttpNotFound();
+            }
+            return View(genero);
+        }
+
         //ActionResult para remover do banco o gênero.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Excluir(int id)
+        public ActionResult Excluir(GeneroViewModel viewModel)
         {
             try
             {
-                var genero = Mapper.Map<Genero>(_generoService.GetById(id));
+                var genero = Mapper.Map<Genero>(viewModel);
                 _generoService.Remove(genero);
-                return Json(new { ok = true });
+                return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return Json(new { ok = false });
+                throw;
             }
         }
 
         //ActionResult para remover múltiplos gêneros do banco.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ExcluirMultiplos(List<int> idGeneros)
+        public ActionResult ExcluirMultiplos(int[] idGeneros)
         {
             try
             {
