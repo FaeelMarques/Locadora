@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LocadoraDDD.MVC.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class FilmesController : Controller
     {
         private readonly IGeneroAppService _generoService;
