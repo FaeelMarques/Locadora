@@ -12,6 +12,6 @@ namespace LocadoraDDD.Domain.Entities
         public string CpfCliente { get; set; }
         public DateTime DataLocacao { get; set; }
 
-        public virtual ICollection<Filme> ListaFilmes { get; set; }
+        public virtual ICollection<LocacaoFilmes> LocacaoFilmes { get; set; }
     }
 }

@@ -69,10 +69,15 @@
     <Compile Include="Migrations\202009060141191_Primeira_Migracao_Locadora.Designer.cs">
       <DependentUpon>202009060141191_Primeira_Migracao_Locadora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009090256598_Ajuste_Relacionamento_Locacao_e_Filme.cs" />
+    <Compile Include="Migrations\202009090256598_Ajuste_Relacionamento_Locacao_e_Filme.Designer.cs">
+      <DependentUpon>202009090256598_Ajuste_Relacionamento_Locacao_e_Filme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FilmeRepository.cs" />
     <Compile Include="Repositories\GeneroRepository.cs" />
+    <Compile Include="Repositories\LocacaoFilmesRepository.cs" />
     <Compile Include="Repositories\LocacaoRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
@@ -89,6 +94,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202009060141191_Primeira_Migracao_Locadora.resx">
       <DependentUpon>202009060141191_Primeira_Migracao_Locadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009090256598_Ajuste_Relacionamento_Locacao_e_Filme.resx">
+      <DependentUpon>202009090256598_Ajuste_Relacionamento_Locacao_e_Filme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

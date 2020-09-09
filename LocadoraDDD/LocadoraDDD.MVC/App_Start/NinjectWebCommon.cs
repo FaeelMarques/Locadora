@@ -51,16 +51,19 @@ namespace LocadoraDDD.MVC.App_Start
             kernel.Bind<IFilmeAppService>().To<FilmeAppService>();
             kernel.Bind<IGeneroAppService>().To<GeneroAppService>();
             kernel.Bind<ILocacaoAppService>().To<LocacaoAppService>();
+            kernel.Bind<ILocacaoFilmesAppService>().To<LocacaoFilmesAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IFilmeService>().To<FilmeService>();
             kernel.Bind<IGeneroService>().To<GeneroService>();
             kernel.Bind<ILocacaoService>().To<LocacaoService>();
+            kernel.Bind<ILocacaoFilmesService>().To<LocacaoFilmesService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IFilmeRepository>().To<FilmeRepository>();
             kernel.Bind<IGeneroRepository>().To<GeneroRepository>();
             kernel.Bind<ILocacaoRepository>().To<LocacaoRepository>();
+            kernel.Bind<ILocacaoFilmesRepository>().To<LocacaoFilmesRepository>();
         }
     }
 }

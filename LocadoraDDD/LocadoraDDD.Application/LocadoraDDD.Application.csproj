@@ -48,7 +48,9 @@
     <Compile Include="Interface\IAppServiceBase.cs" />
     <Compile Include="Interface\IGeneroAppService.cs" />
     <Compile Include="Interface\ILocacaoAppService.cs" />
+    <Compile Include="Interface\ILocacaoFilmesAppService.cs" />
     <Compile Include="LocacaoAppService.cs" />
+    <Compile Include="LocacaoFilmesAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -21,5 +21,7 @@ namespace LocadoraDDD.Domain.Entities
 
         [ForeignKey("GeneroId")]
         public virtual Genero Genero { get; set; }
+
+        public virtual ICollection<LocacaoFilmes> LocacaoFilmes { get; set; }
     }
 }

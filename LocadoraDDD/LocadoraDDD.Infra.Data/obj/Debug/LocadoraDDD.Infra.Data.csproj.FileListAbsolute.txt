@@ -26,3 +26,4 @@ D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.D
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\LocadoraDDD.Domain.dll.config
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\Dapper.xml
 D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\bin\Debug\Dommel.xml
+D:\Usuários\Rafael\Documentos\Projetos\Locadora\LocadoraDDD\LocadoraDDD.Infra.Data\obj\Debug\LocadoraDDD.Infra.Data.Migrations.202009090256598_Ajuste_Relacionamento_Locacao_e_Filme.resources

@@ -36,4 +36,5 @@ namespace LocadoraDDD.Infra.Data.Repositories
                 return con.Query<Locacao>(Query);
             }
         }
-    } 
+    }
+}

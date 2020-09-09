@@ -40,3 +40,4 @@ namespace LocadoraDDD.Infra.Data.Repositories
             }
         }
     }
+}

@@ -57,7 +57,7 @@ namespace LocadoraDDD.MVC.Controllers
                     foreach (var item in idFilmes)
                     {
                         var filme = Mapper.Map<Filme>(_filmeService.GetById(item));
-                        locacao.ListaFilmes.Add(filme);
+                        //locacao..Add(filme);
                     }
 
                     _locacaoService.Add(locacao);

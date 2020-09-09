@@ -54,17 +54,21 @@
     <Compile Include="Entities\Filme.cs" />
     <Compile Include="Entities\Genero.cs" />
     <Compile Include="Entities\Locacao.cs" />
+    <Compile Include="Entities\LocacaoFilmes.cs" />
     <Compile Include="Interfaces\Repositories\IFilmeRepository.cs" />
     <Compile Include="Interfaces\Repositories\IGeneroRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ILocacaoFilmesRepository.cs" />
     <Compile Include="Interfaces\Repositories\ILocacaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Services\IFilmeService.cs" />
     <Compile Include="Interfaces\Services\IGeneroService.cs" />
+    <Compile Include="Interfaces\Services\ILocacaoFilmesService.cs" />
     <Compile Include="Interfaces\Services\ILocacaoService.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FilmeService.cs" />
     <Compile Include="Services\GeneroService.cs" />
+    <Compile Include="Services\LocacaoFilmesService.cs" />
     <Compile Include="Services\LocacaoService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
   </ItemGroup>
