@@ -58,7 +58,9 @@
                     @item.DataLocacao
                 </td>
                 <td>
-                    <a href="@Url.Action("Detalhes","Locacao", new { id = item.Id})"><button class="btn btn-primary">Detalhes</button></a>
+                    <a href="@Url.Action("Editar","Locacao", new { id = item.Id})"><button class="btn btn-warning">Editar</button></a> |
+                    <a href="@Url.Action("Detalhes","Locacao", new { id = item.Id})"><button class="btn btn-primary">Detalhes</button></a> |
+                    <a href="@Url.Action("Excluir","Locacao", new { id = item.Id})"><button class="btn btn-danger">Excluir</button></a>
                 </td>
             </tr>
         }

@@ -99,74 +99,92 @@ namespace LocadoraDDD.MVC.Controllers
         }
 
         //ActionResult que redireciona para edição da locação.
-        //public ActionResult Editar(int id)
-        //{
-        //    var locacao = Mapper.Map<Locacao, LocacaoViewModel>(_locacaoService.GetById(id));
-        //    if (locacao == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.Filmes = _filmeService.GetAll();
-        //    return View(locacao);
-        //}
+        public ActionResult Editar(int id)
+        {
+            var locacao = Mapper.Map<Locacao, LocacaoViewModel>(_locacaoService.GetById(id));
+            if (locacao == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Filmes = _filmeService.GetAll();
+            return View(locacao);
+        }
 
 
-        ////ActionResult para atualizar no banco a locação.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Editar(LocacaoViewModel viewModel, List<int> idFilmes)
-        //{
+        //ActionResult para atualizar no banco a locação.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(LocacaoViewModel viewModel, List<int> idFilmes)
+        {
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            var locacao = Mapper.Map<Locacao>(viewModel);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var locacao = Mapper.Map<Locacao>(viewModel);
 
-        //            if (idFilmes != null)
-        //            {
-        //                foreach (var item in idFilmes)
-        //                {
-        //                    //var locacaoFilme = _locFilmesService.GetById(item);
-        //                    //_locFilmesService.
+                    if (idFilmes != null)
+                    {
+                        var locacaoFilmes = Mapper.Map<IEnumerable<LocacaoFilmes>>(_locFilmesService.GetAll().Where(lf => lf.LocacaoId == locacao.Id));
+                        foreach(var loc in locacaoFilmes)
+                        {
+                            _locFilmesService.Remove(loc);
+                        }
+                        foreach (var item in idFilmes)
+                        {
 
+                            _locFilmesService.Add(new LocacaoFilmes
+                            {
+                                LocacaoId = locacao.Id,
+                                FilmeId = item
+                            });
+                        }
+                    }
 
-        //                    _locFilmesService.Add(new LocacaoFilmes
-        //                    {
-        //                        LocacaoId = locacao.Id,
-        //                        FilmeId = item
-        //                    });
-        //                }
-        //            }
+                    _locacaoService.Update(locacao);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+            ViewBag.Filmes = _filmeService.GetAll();
+            return View(viewModel);
+        }
 
-        //            _locacaoService.Update(locacao);
-        //            return RedirectToAction("Index");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    ViewBag.Filmes = _filmeService.GetAll();
-        //    return View(viewModel);
-        //}
+        //ActionResult para remover do banco a locação.
 
-        ////ActionResult para remover do banco a locação.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Excluir(int id)
-        //{
-        //    try
-        //    {
-        //        var locacao = Mapper.Map<Locacao>(_locacaoService.GetById(id));
-        //        _locacaoService.Remove(locacao);
-        //        return Json(new { ok = true });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return Json(new { ok = false });
-        //    }
-        //}
+        public ActionResult Excluir(int id)
+        {
+            var locacao = Mapper.Map<LocacaoViewModel>(_locacaoService.GetById(id));
+            if (locacao == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Filmes = _filmeService.GetAll();
+            return View(locacao);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Excluir(LocacaoViewModel viewModel)
+        {
+            try
+            {
+                var locacao = Mapper.Map<Locacao>(viewModel);
+                var locacaoFilmes = Mapper.Map<IEnumerable<LocacaoFilmes>>(_locFilmesService.GetAll().Where(lf => lf.LocacaoId == locacao.Id));
+                foreach(var locFilmes in locacaoFilmes)
+                {
+                    _locFilmesService.Remove(locFilmes);
+                }
+                _locacaoService.Remove(locacao);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
         ////ActionResult para bloquear a locação.
